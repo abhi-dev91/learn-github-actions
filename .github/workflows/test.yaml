@@ -1,7 +1,7 @@
 name: Echo Hello
 on: [push]
 jobs:
-  print hello:
+  print-hello:
     runs-on: ubuntu-latest
     steps:
      - run: echo "${{ github.event_name }} event automatically triggered this job."
