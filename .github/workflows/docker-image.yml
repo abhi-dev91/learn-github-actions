@@ -39,6 +39,8 @@ jobs:
       with:
         name: my-image
         path: my-image.tar
+    - name: list dirctories
+      run: ls -la
     - name: Load Docker image
       run: docker load -i my-image.tar
     - name: login to Docker registry
