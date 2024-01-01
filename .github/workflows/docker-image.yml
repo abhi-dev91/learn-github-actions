@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+  
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: login to Dokcer registry
+      run: docker login -u ${{ DOCKER_REGISTRY_USERNAME}} -p ${{ DOCKER_REGISTRY_PASSWORD }} {{ DOCKER_REGISTRY_URL }}
+    - name: tag the image for registry
+      run: docker tag my-image-name:$(date +%s) ${{ DOCKER_REGISTRY_USERNAME}}/my-image-name:$(date +%s)
+    - name: push the image
+      run: docker push ${{ DOCKER_REGISTRY_USERNAME}}/my-image-name:$(date +%s)
