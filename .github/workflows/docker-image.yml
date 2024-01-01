@@ -25,7 +25,7 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-    - name: login to Dokcer registry
+    - name: login to Docker registry
       run: docker login -u ${{ DOCKER_REGISTRY_USERNAME }} -p ${{ DOCKER_REGISTRY_PASSWORD }} ${{ DOCKER_REGISTRY_URL }}
     - name: tag the image for registry
       run: docker tag my-image-name:$(date +%s) ${{ DOCKER_REGISTRY_USERNAME}}/my-image-name:$(date +%s)
