@@ -48,4 +48,4 @@ jobs:
     - name: tag the image for registry
       run: docker tag my-image-name:1 $DOCKER_REGISTRY_USERNAME/my-image-name:1
     - name: push the image
-      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:1 && docker push $DOCKER_REGISTRY_USERNAME/my-image-name:1
+      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:1 && docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/my-image-name:1
