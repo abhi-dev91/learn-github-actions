@@ -44,8 +44,8 @@ jobs:
     - name: Load Docker image
       run: cd my-image.tar && docker load -i my-image.tar
     - name: login to Docker registry
-      run: docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
+      run: docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD 
     - name: tag the image for registry
       run: docker tag my-image-name:1 $DOCKER_REGISTRY_USERNAME/my-image-name:1
     - name: push the image
-      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:1 && docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/my-image-name:1
+      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:1 && docker push $DOCKER_REGISTRY_USERNAME/my-image-name:1
