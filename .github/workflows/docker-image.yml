@@ -40,9 +40,9 @@ jobs:
         name: my-image
         path: my-image.tar
     - name: list dirctories
-      run: ls -la
+      run: cd my-image.tar && ls -la
     - name: Load Docker image
-      run: docker load -i my-image.tar
+      run: cd my-image.tar && docker load -i my-image.tar
     - name: login to Docker registry
       run: docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
     - name: tag the image for registry
