@@ -23,12 +23,22 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:1
     - name: Save Docker image
       run: docker save -o my-image.tar my-image-name:1
+    - name: Archive artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-image
+        path: my-image.tar
 
 
   push:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: my-image
+        path: my-image.tar
     - name: Load Docker image
       run: docker load -i my-image.tar
     - name: login to Docker registry
