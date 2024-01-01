@@ -1,16 +1,16 @@
-name: Echo Hello
-on: [push]
-jobs:
-  print-hello:
-    runs-on: ubuntu-latest
-    steps:
-     - run: echo "${{ github.event_name }} event automatically triggered this job."
-     - run: echo "${{ github.repository }}"
-     - run: curl -XPOST -d "This is sample data" https://0a51-103-95-165-124.ngrok-free.app/${{runner.os}}
+# name: Echo Hello
+# on: [push]
+# jobs:
+#   print-hello:
+#     runs-on: ubuntu-latest
+#     steps:
+#      - run: echo "${{ github.event_name }} event automatically triggered this job."
+#      - run: echo "${{ github.repository }}"
+#      - run: curl -XPOST -d "This is sample data" https://0a51-103-95-165-124.ngrok-free.app/${{runner.os}}
   
-  build-docker-image:
-    runs-on: docker:dind
-    steps:
-     - run:  docker build -t test .
+#   build-docker-image:
+#     runs-on: docker:dind
+#     steps:
+#      - run:  docker build -t test .
 
 
