@@ -20,9 +20,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:1
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%d%m%y)
     - name: Save Docker image
-      run: docker save -o my-image.tar my-image-name:1
+      run: docker save -o my-image.tar my-image-name:$(date +%d%m%y)
     - name: Archive artifact
       uses: actions/upload-artifact@v2
       with:
@@ -46,6 +46,6 @@ jobs:
     - name: login to Docker registry
       run: docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD 
     - name: tag the image for registry
-      run: docker tag my-image-name:1 $DOCKER_REGISTRY_USERNAME/my-image-name:1
+      run: docker tag my-image-name:$(date +%d%m%y) $DOCKER_REGISTRY_USERNAME/my-image-name:$(date +%d%m%y)
     - name: push the image
-      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:1 && docker push $DOCKER_REGISTRY_USERNAME/my-image-name:1
+      run: echo $DOCKER_REGISTRY_USERNAME/my-image-name:$(date +%d%m%y) && docker push $DOCKER_REGISTRY_USERNAME/my-image-name:$(date +%d%m%y)
